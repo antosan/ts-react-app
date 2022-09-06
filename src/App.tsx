@@ -3,12 +3,14 @@ import './App.css';
 import Board from './Board';
 import { calculateWinner } from './utils';
 
+export type Player = 'X' | 'O' | null;
+
 export default function App() {
-  const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
+  const [history, setHistory] = useState([{ squares: Array<Player>(9).fill(null) }]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
-  function handleClick(i) {
+  function handleClick(i: number) {
     const currentHistory = history.slice(0, stepNumber + 1);
     const currentStep = currentHistory[currentHistory.length - 1];
     const squares = currentStep.squares.slice();
@@ -24,7 +26,7 @@ export default function App() {
     setXIsNext(!xIsNext);
   }
 
-  function jumpTo(step) {
+  function jumpTo(step: number) {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
   }

@@ -1,7 +1,13 @@
+import type { Player } from './App';
 import Square from './Square';
 
-export default function Board(props) {
-  function renderSquare(i) {
+type BoardProps = {
+  squares: Array<Player>;
+  onClick: (index: number) => void;
+};
+
+export default function Board(props: BoardProps) {
+  function renderSquare(i: number) {
     return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
   }
 
